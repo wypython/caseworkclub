@@ -20,11 +20,16 @@ class Person(models.Model): #Base for all the people classes
 
     surname = models.CharField(max_length=20)
     first_names = models.CharField(max_length=20)
+
+    def full_name(self):
+        return("{} {}".format(self.first_names,self.surname))
+
     email = models.EmailField(blank=True)
     phone = models.CharField(max_length=11,validators=[caseworkclub.validators.phone_validator],blank=True)
     mobile = models.CharField(max_length=11,validators=[caseworkclub.validators.phone_validator],blank=True)
 
-
+    def __str__(self):
+        return(self.full_name())
     #class Meta:
     #    abstract = True
 
@@ -33,25 +38,25 @@ class HRContact(Person):
     employer = models.ForeignKey('Employer')
 
     def __str__(self):
-        return("{} {}:{} HR".format(self.first_names,self.surname,self.employer))
+        return("{} :{} HR".format(self.full_name(),self.employer))
 
 class Manager(Person):
     workplace = models.ForeignKey('Workplace')
     job = models.CharField(max_length=15)
 
     def __str__(self):
-        return("{} {}, {} at {}".format(self.first_names,self.surname,self.job,self.workplace.name))
+        return("{}, {} at {}".format(self.full_name(),self.job,self.workplace.name))
 
 class Caseworker(Person):
     association = models.ForeignKey('Association')
 
     def __str__(self):
-        return("{} {}, caseworker for {}.".format(self.first_names,self.surname,self.association))
+        return("{} , caseworker for {}.".format(self.full_name(),self.association))
 
 class Member(Person):
 
     def __str__(self):
-        return("{} {} {}".format(self.first_names,self.surname,self.membership_number))
+        return("{} {}".format(self.full_name(),self.membership_number))
 
     membership_number = models.CharField(max_length=6,primary_key=True,validators=[caseworkclub.validators.membership_number_validator])
     association = models.ForeignKey('Association')
@@ -92,7 +97,7 @@ class EmailNote(CaseNote):
     contact = models.ForeignKey(Person)
 
     def __str__(self):
-        return("Email Contact with {} at {}".format(self.contact,self.timestamp))
+        return("Email Contact with {} at {}".format(self.contact.full_name(),self.timestamp))
 
 class PhoneNote(CaseNote):
 

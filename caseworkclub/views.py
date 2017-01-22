@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from caseworkclub.models import Case,Member
 from django.template import loader
+from django.views import generic
+from .models import Caseworker
 
 def index(request):
     return HttpResponse("Sup, this is the caseworkclub index")
@@ -22,4 +24,8 @@ def member(request,membership_number):
     }
 
     return HttpResponse(template.render(context,request))
+
+class CaseworkerView(generic.DetailView):
+    model = Caseworker
+    #template_name = 'caseworkclub/caseworker.html'
 

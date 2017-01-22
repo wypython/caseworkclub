@@ -10,7 +10,7 @@ def index(request):
 
 def caseview(request,id):
 
-    return HttpResponse("This will be the view that we use, with all the notes from case ID {}. The member is {}".format(id,Case.objects.get(id=id).member.surname))
+    return HttpResponse("This will be the view that we use, with all the notes from case ID {}. The member is {}".format(id,Case.objects.get(id=id).member.full_name()))
 
 def member(request,membership_number):
     #print(membership_number)

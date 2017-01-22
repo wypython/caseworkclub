@@ -53,6 +53,11 @@ class Caseworker(Person):
     def __str__(self):
         return("{} , caseworker for {}.".format(self.full_name(),self.association))
 
+    def open_cases(self):
+        return(Case.objects.filter(closed=None,caseworker=self))
+
+
+
 class Member(Person):
 
     def __str__(self):

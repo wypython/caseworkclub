@@ -1,0 +1,15 @@
+{% if cases_of_member %}
+    <ul>
+    {% for case in cases_of_member %}
+        <li><a href="/caseworkclub/{{ case.id}}/">{{case}}
+        </a>
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+    {% else %}
+        <p> No cases!</p>
+
+    {% endif%}

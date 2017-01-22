@@ -11,6 +11,9 @@ class Workplace(models.Model):
     name = models.CharField(max_length=30)
     employer = models.ForeignKey('Employer')
 
+    def __str__(self):
+        return("{}: {}".format(self.name,self.employer.name))
+
 class Person(models.Model): #Base for all the people classes
 
 
@@ -34,6 +37,10 @@ class HRContact(Person):
 
 class Manager(Person):
     workplace = models.ForeignKey('Workplace')
+    job = models.CharField(max_length=15)
+
+    def __str__(self):
+        return("{} {}, {} at {}".format(self.first_names,self.surname,self.job,self.workplace.name))
 
 class Caseworker(Person):
     association = models.ForeignKey('Association')
@@ -44,14 +51,14 @@ class Caseworker(Person):
 class Member(Person):
 
     def __str__(self):
-        return("{}: {}, {}".format(self.number,self.surname,self.first_names))
+        return("{} {} {}".format(self.first_names,self.surname,self.membership_number))
 
     membership_number = models.CharField(max_length=6,primary_key=True,validators=[caseworkclub.validators.membership_number_validator])
     association = models.ForeignKey('Association')
 
 class Case(models.Model):
     def __str__(self):
-        return("{} {}, {}, {}".format(self.member.first_names,self.member.surname,self.workplace,self.caseworktype))
+        return("ID={}: {} {}, {}, {}".format(self.id,self.member.first_names,self.member.surname,self.workplace,self.caseworktype))
     member = models.ForeignKey(Member,on_delete=models.CASCADE)
     caseworktype = models.CharField(max_length = 20)
     opened = models.DateField()

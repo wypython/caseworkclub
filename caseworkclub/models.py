@@ -66,11 +66,21 @@ class Member(Person):
     membership_number = models.CharField(max_length=6,primary_key=True,validators=[caseworkclub.validators.membership_number_validator])
     association = models.ForeignKey('Association')
 
+class CaseworkType(models.Model):
+    typename = models.CharField(max_length = 20)
+
+    def __str__(self):
+        return(self.typename)
+
+    def cases_of_type(self):
+        return(Case.objects.filter(caseworktype=self))
+
+
 class Case(models.Model):
     def __str__(self):
         return("ID={}: {} {}, {}, {}".format(self.id,self.member.first_names,self.member.surname,self.workplace,self.caseworktype))
     member = models.ForeignKey(Member,on_delete=models.CASCADE)
-    caseworktype = models.CharField(max_length = 20)
+    caseworktype = models.ForeignKey(CaseworkType)
     opened = models.DateField()
     closed = models.DateField(blank=True,null=True)
     workplace = models.ForeignKey('Workplace',on_delete=models.CASCADE)

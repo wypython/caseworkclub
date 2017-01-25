@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import Member, Caseworker, Manager, HRContact
 from .models import Workplace, Employer, Association
-from .models import Case,EmailNote,CaseworkType
+from .models import Case,CaseworkType,CaseNote,NoteType
 
 
 
@@ -19,5 +19,5 @@ admin.site.register(HRContact)
 
 admin.site.register(Employer)
 
-admin.site.register(EmailNote)
-admin.site.register(CaseworkType)
+admin.site.register(CaseNote)
+admin.site.register(NoteType)

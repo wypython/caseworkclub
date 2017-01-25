@@ -103,25 +103,10 @@ class CaseNote(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     case = models.ForeignKey(Case)
     text = models.TextField()
+    contact = models.ForeignKey(Person,null=True)
 
-    class Meta:
-        abstract=True
 
-class EmailNote(CaseNote):
-
-    contact = models.ForeignKey(Person)
-
+class NoteType(models.Model):
+    name = models.CharField(max_length = 20)
     def __str__(self):
-        return("Email Contact with {} at {}".format(self.contact.full_name(),self.timestamp))
-
-class PhoneNote(CaseNote):
-
-    def __str__(self):
-        return("Phone Conversation with {} at ".format(self.contact,self.timestamp))
-
-    contact = models.ForeignKey(Person)
-
-class MeetingNote(CaseNote):
-    def __str__(self):
-        return("Outcome of meeting at {}".format(self.timestamp))
-
+        return(self.name)

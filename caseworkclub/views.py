@@ -8,9 +8,13 @@ from .models import Caseworker
 def index(request):
     return HttpResponse("Sup, this is the caseworkclub index")
 
-def caseview(request,id):
+#def caseview(request,id):
 
-    return HttpResponse("This will be the view that we use, with all the notes from case ID {}. The member is {}".format(id,Case.objects.get(id=id).member.full_name()))
+#    return HttpResponse("This will be the view that we use, with all the notes from case ID {}. The member is {}".format(id,Case.objects.get(id=id).member.full_name()))
+
+class Case(generic.DetailView):
+    model = Case
+
 
 def member(request,membership_number):
     #print(membership_number)

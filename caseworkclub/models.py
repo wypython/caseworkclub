@@ -51,7 +51,7 @@ class Caseworker(Person):
     association = models.ForeignKey('Association')
 
     def __str__(self):
-        return("{} , caseworker for {}.".format(self.full_name(),self.association))
+        return(self.full_name())
 
     def open_cases(self):
         return(Case.objects.filter(closed=None,caseworker=self))
@@ -86,9 +86,12 @@ class Case(models.Model):
     workplace = models.ForeignKey('Workplace',on_delete=models.CASCADE)
     caseworker = models.ForeignKey('Caseworker')
 
+    def notes(self):
+        return(CaseNote.objects.filter(case=self))
+
 class Association(models.Model):
     def __str__(self):
-        return("{} association.".format(self.name))
+        return(self.name)
     name = models.CharField(max_length = 20)
 
 class Employer(models.Model):
@@ -104,6 +107,13 @@ class CaseNote(models.Model):
     case = models.ForeignKey(Case)
     text = models.TextField()
     contact = models.ForeignKey(Person,null=True)
+    notetype = models.ForeignKey('NoteType')
+
+    class Meta:
+        ordering = ['-timestamp']
+
+    def __str__(self):
+        return("{} {} {}".format(self.case.id,self.contact,self.notetype))
 
 
 class NoteType(models.Model):

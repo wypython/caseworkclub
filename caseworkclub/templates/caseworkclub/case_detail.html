@@ -1,0 +1,20 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+Case: {{object.id}}<br>
+Caseworker: {{object.caseworker}}<br>
+Association: {{object.caseworker.association}}<br>
+
+
+{% for note in object.notes %}
+
+<div class="well">
+
+{{note.timestamp}}<br>
+{{note.notetype}}: {{note.contact}}<br>
+{{note.text}}
+
+</div>
+
+{% endfor %}
+

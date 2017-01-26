@@ -113,7 +113,7 @@ class CaseNote(models.Model):
         ordering = ['-timestamp']
 
     def __str__(self):
-        return("{} {} {}".format(self.case.id,self.contact,self.notetype))
+        return("{} {} {}".format(self.contact,self.notetype,self.timestamp))
 
 
 class NoteType(models.Model):

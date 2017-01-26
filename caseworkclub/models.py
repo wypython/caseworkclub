@@ -12,7 +12,7 @@ class Workplace(models.Model):
     employer = models.ForeignKey('Employer')
 
     def __str__(self):
-        return("{}: {}".format(self.name,self.employer.name))
+        return(self.name)
 
 class Person(models.Model): #Base for all the people classes
 
@@ -60,8 +60,6 @@ class Caseworker(Person):
 
 class Member(Person):
 
-    def __str__(self):
-        return("{} {}".format(self.full_name(),self.membership_number))
 
     membership_number = models.CharField(max_length=6,primary_key=True,validators=[caseworkclub.validators.membership_number_validator])
     association = models.ForeignKey('Association')

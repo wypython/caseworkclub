@@ -1,9 +1,20 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-Case: {{object.id}}<br>
+<head>
+<title> Case {{object.id}}: {{object.member}} at {{object.workplace}}</title>
+
+</head>
+
+
+<p>
+Case ID: {{object.id}}<br>
+Member: {{object.member}}<br>
+Workplace: {{object.workplace}}<br>
+Employer: {{object.workplace}}<br>
 Caseworker: {{object.caseworker}}<br>
 Association: {{object.caseworker.association}}<br>
+</p>
 
 
 {% for note in object.notes %}

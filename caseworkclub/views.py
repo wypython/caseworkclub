@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from caseworkclub.models import Case,Member
 from django.template import loader
@@ -20,7 +20,6 @@ class Case(generic.DetailView):
 def member(request,membership_number):
     #print(membership_number)
     member = Member.objects.get(membership_number=membership_number)
-    print(member.full_name())
     cases_of_member = Case.objects.filter(member=Member.objects.get(membership_number=membership_number))
     template = loader.get_template('caseworkclub/index.html')
     context = {
@@ -35,5 +34,15 @@ class CaseworkerView(generic.DetailView):
     #template_name = 'caseworkclub/caseworker.html'
 
 def new_case_note(request):
-    form = CaseNoteForm()
+    if request.method == "POST":
+        form = CaseNoteForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return redirect('case',pk=post.case.id)
+
+
+
+    else:
+
+        form = CaseNoteForm()
     return render(request, 'caseworkclub/casenoteform.html',{'form':form})

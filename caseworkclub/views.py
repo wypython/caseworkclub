@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from caseworkclub.models import Case,Member
 from django.template import loader
 from django.views import generic
 from .models import Caseworker
+from .forms import CaseNoteForm
 
 def index(request):
     return HttpResponse("Sup, this is the caseworkclub index")
@@ -33,3 +34,6 @@ class CaseworkerView(generic.DetailView):
     model = Caseworker
     #template_name = 'caseworkclub/caseworker.html'
 
+def new_case_note(request):
+    form = CaseNoteForm()
+    return render(request, 'caseworkclub/casenoteform.html',{'form':form})

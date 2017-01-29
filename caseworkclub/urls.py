@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'(?P<membership_number>'+membership_number_regex+r')',views.member,name='member'),
     url(r'^(?P<pk>\d+)',views.Case.as_view()),
     url(r'caseworker/(?P<pk>\d+)',views.CaseworkerView.as_view()),
+    url(r'^newcasenote$',views.new_case_note,name='new_case_note')
+
 ]

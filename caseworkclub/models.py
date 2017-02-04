@@ -60,7 +60,6 @@ class Caseworker(Person):
 
 class Member(Person):
 
-
     membership_number = models.CharField(max_length=6,primary_key=True,validators=[caseworkclub.validators.membership_number_validator])
     association = models.ForeignKey('Association')
 

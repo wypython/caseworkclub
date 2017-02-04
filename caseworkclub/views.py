@@ -13,7 +13,7 @@ def index(request):
 
 #    return HttpResponse("This will be the view that we use, with all the notes from case ID {}. The member is {}".format(id,Case.objects.get(id=id).member.full_name()))
 
-class Case(generic.DetailView):
+class CaseView(generic.DetailView):
     model = Case
 
 

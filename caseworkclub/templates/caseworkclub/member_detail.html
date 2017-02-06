@@ -1,0 +1,20 @@
+{% if object.cases_of_member %}
+
+    Cases for member {{ object.full_name }} {{object.membership_number}}.
+
+    <ul>
+
+    {% for case in object.cases_of_member %}
+
+        <li><a href="/case/{{case.id}}/">{{case}}
+        </a>
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+    {% else %}
+        <p> No cases!</p>
+
+    {% endif%}

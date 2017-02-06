@@ -62,6 +62,9 @@ class Member(Person):
 
     membership_number = models.CharField(max_length=6,primary_key=True,validators=[caseworkclub.validators.membership_number_validator])
     association = models.ForeignKey('Association')
+    
+    def cases_of_member(self):
+        return(Case.objects.filter(member=self))
 
 class CaseworkType(models.Model):
     typename = models.CharField(max_length = 20)

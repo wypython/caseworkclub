@@ -7,9 +7,9 @@ from . import views
 
 urlpatterns = [
     url(r'^$',views.index,name='index'),
-    url(r'member/(?P<membership_number>'+membership_number_regex+r')',views.member,name='member'),
+    url(r'member/(?P<pk>'+membership_number_regex+r')',views.MemberView.as_view(),name='member'),
     url(r'^case/(?P<pk>\d+)',views.CaseView.as_view(),name='case'),
-    url(r'caseworker/(?P<pk>\d+)',views.CaseworkerView.as_view()),
+    url(r'caseworker/(?P<pk>\d+)',views.CaseworkerView.as_view(),name='caseworker'),
     url(r'^newcasenote$',views.new_case_note,name='new_case_note')
 
 ]

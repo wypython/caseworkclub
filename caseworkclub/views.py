@@ -13,22 +13,23 @@ def index(request):
 class CaseView(generic.DetailView):
     model = models.Case
 
+class MemberView(generic.DetailView):
+    model = models.Member
 
-def member(request,membership_number):
-    member = models.Member.objects.get(membership_number=membership_number)
-    cases_of_member = models.Case.objects.filter(member=models.Member.objects.get(membership_number=membership_number))
-    template = loader.get_template('caseworkclub/index.html')
-    context = {
+##def member(request,membership_number):
+#    member = models.Member.objects.get(membership_number=membership_number)
+##    cases_of_member = models.Case.objects.filter(member=models.Member.objects.get(membership_number=membership_number))
+#    template = loader.get_template('caseworkclub/index.html')
+#    context = {
+#
+#        'cases_of_member' : cases_of_member,
+#        'name' : member,
+#    }
 
-        'cases_of_member' : cases_of_member,
-        'name' : member,
-    }
-
-    return HttpResponse(template.render(context,request))
+    #return HttpResponse(template.render(context,request))
 
 class CaseworkerView(generic.DetailView):
     model = models.Caseworker
-    #template_name = 'caseworkclub/caseworker.html'
 
 def new_case_note(request):
     if request.method == "POST":

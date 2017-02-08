@@ -1,13 +1,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+This bit will be the bit at the top.
+
 <div class = "container-fluid">
     <div class = "row">
         <div class = "col-md-1">
             This will be the side menu.
         </div>
 
-        <div class = "col-md-11">
+        <div class = "col-md-11" style="height:100%; overflow-y: auto;">
             This will be the main bit.
             {% block main %}
             {% endblock %}

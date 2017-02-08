@@ -1,32 +1,26 @@
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'caseworkclub/base.html' %}
 
 
-<head>
-<title> Case {{object.id}}: {{object.member}} at {{object.workplace}}</title>
-
-</head>
+{% block main %}
 
 
-<p>
 Case ID: {{object.id}}<br>
 Member: {{object.member}}<br>
 Workplace: {{object.workplace}}<br>
 Employer: {{object.workplace}}<br>
 Caseworker: {{object.caseworker}}<br>
 Association: {{object.caseworker.association}}<br>
-</p>
 
 
 {% for note in object.notes %}
 
 <div class="well">
-
-{{note.timestamp}}<br>
-{{note.notetype}}: {{note.contact}}<br>
-{{note.text}}
+    {{note.timestamp}}<br>
+        {{note.notetype}}: {{note.contact}}<br>
+    {{note.text}}
 
 </div>
 
 {% endfor %}
+
+{% endblock %}

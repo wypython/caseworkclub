@@ -1,20 +1,25 @@
-{% if object.cases_of_member %}
+{% extends 'caseworkclub/base.html'%}
 
-    Cases for member {{ object.full_name }} {{object.membership_number}}.
+{% block main %}
 
-    <ul>
+    {% if object.cases_of_member %}
 
-    {% for case in object.cases_of_member %}
+        Cases for member {{ object.full_name }} {{object.membership_number}}.
 
-        <li><a href="/case/{{case.id}}/">{{case}}
-        </a>
-        </li>
+        <ul>
 
-        {% endfor %}
+        {% for case in object.cases_of_member %}
 
-    </ul>
+            <li><a href="/case/{{case.id}}/">{{case}}
+            </a>
+            </li>
 
-    {% else %}
-        <p> No cases!</p>
+            {% endfor %}
+
+        </ul>
+
+        {% else %}
+            <p> No cases!</p>
 
     {% endif%}
+{% endblock %}

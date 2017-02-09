@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib import admin
 import caseworkclub.validators
 
 # Create your models here.
@@ -28,24 +28,20 @@ class Person(models.Model): #Base for all the people classes
     phone = models.CharField(max_length=11,validators=[caseworkclub.validators.phone_validator],blank=True)
     mobile = models.CharField(max_length=11,validators=[caseworkclub.validators.phone_validator],blank=True)
 
+    workplace = models.ManyToManyField(Workplace,through='Job')
+    
     def __str__(self):
         return(self.full_name())
-    #class Meta:
-    #    abstract = True
 
+class Job(models.Model):
+    title = models.ForeignKey('JobType')
+    workplace = models.ForeignKey(Workplace, on_delete=models.CASCADE)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
 
-class HRContact(Person):
-    employer = models.ForeignKey('Employer')
-
+class JobType(models.Model):
+    typename = models.CharField(max_length=2)
     def __str__(self):
-        return("{} :{} HR".format(self.full_name(),self.employer))
-
-class Manager(Person):
-    workplace = models.ForeignKey('Workplace')
-    job = models.CharField(max_length=15)
-
-    def __str__(self):
-        return("{}, {} at {}".format(self.full_name(),self.job,self.workplace.name))
+        return(self.typename)
 
 class Caseworker(Person):
     association = models.ForeignKey('Association')
@@ -66,6 +62,8 @@ class Member(Person):
     def cases_of_member(self):
         return(Case.objects.filter(member=self))
 
+    def __str__(self):
+        return("{} {}".format(self.full_name(),self.membership_number))
 class CaseworkType(models.Model):
     typename = models.CharField(max_length = 20)
 
@@ -120,3 +118,14 @@ class NoteType(models.Model):
     name = models.CharField(max_length = 20)
     def __str__(self):
         return(self.name)
+
+class JobInline(admin.TabularInline):
+    model = Job
+    extra = 1
+
+class PersonAdmin(admin.ModelAdmin):
+    inlines = [JobInline]
+
+class WorkplaceAdmin(admin.ModelAdmin):
+    inlines = [JobInline]
+    exclude = ('Workplace',)

@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib import admin
 import caseworkclub.validators
 
+from django.urls import reverse
 # Create your models here.
 
 
@@ -112,7 +113,8 @@ class CaseNote(models.Model):
 
     def __str__(self):
         return("{} {} {}".format(self.contact,self.notetype,self.timestamp))
-
+    def get_absolute_url(self):
+        return(reverse('case', kwargs ={'pk':self.case.id}))
 
 class NoteType(models.Model):
     name = models.CharField(max_length = 20)

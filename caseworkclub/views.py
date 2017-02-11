@@ -10,6 +10,13 @@ import caseworkclub.models as models
 def index(request):
     return HttpResponse("Sup, this is the caseworkclub index")
 
+class NoteCreate(generic.edit.CreateView):
+    model = models.CaseNote
+    fields = ['case','text','contact','notetype','timestamp']
+
+#    def form_valid(self,form):
+ #       form.instance.id = self.request.id
+
 class CaseView(generic.DetailView):
     model = models.Case
 

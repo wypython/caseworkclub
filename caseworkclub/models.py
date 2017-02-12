@@ -65,21 +65,18 @@ class Member(Person):
 
     def __str__(self):
         return("{} {}".format(self.full_name(),self.membership_number))
+
 class CaseworkType(models.Model):
     typename = models.CharField(max_length = 20)
 
     def __str__(self):
         return(self.typename)
 
-    def cases_of_type(self):
-        return(Case.objects.filter(caseworktype=self))
-
-
 class Case(models.Model):
     def __str__(self):
-        return("ID={}: {} {}, {}, {}".format(self.id,self.member.first_names,self.member.surname,self.workplace,self.caseworktype))
+        return("ID={}: {} {}, {}".format(self.id,self.member.first_names,self.member.surname,self.workplace))
     member = models.ForeignKey(Member,on_delete=models.CASCADE)
-    caseworktype = models.ForeignKey(CaseworkType)
+    caseworktypes = models.ManyToManyField(CaseworkType)
     opened = models.DateField()
     closed = models.DateField(blank=True,null=True)
     workplace = models.ForeignKey('Workplace',on_delete=models.CASCADE)
@@ -131,3 +128,14 @@ class PersonAdmin(admin.ModelAdmin):
 class WorkplaceAdmin(admin.ModelAdmin):
     inlines = [JobInline]
     exclude = ('Workplace',)
+
+class CaseInline(admin.TabularInline):
+    model = Case.caseworktypes.through
+    extra = 1
+
+class CaseAdmin(admin.ModelAdmin):
+    inlines = [CaseInline]
+
+class CaseTypeAdmin(admin.ModelAdmin):
+    inlines = [CaseInline]
+    exludes = ('caseworktypes')

@@ -113,6 +113,20 @@ class CaseNote(models.Model):
     def get_absolute_url(self):
         return(reverse('case', kwargs ={'pk':self.case.id}))
 
+
+class Task(models.Model):
+    settime = models.DateTimeField(default=timezone.now)
+    completedtime = models.DateTimeField(null=True,blank=True)
+    case = models.ForeignKey(Case)
+    text = models.TextField()
+    contact = models.ForeignKey(Person)
+    tasktype = models.ForeignKey('NoteType')
+
+    def __str__(self):
+        return("{} {}".format(self.tasktype,self.contact))
+
+
+
 class NoteType(models.Model):
     name = models.CharField(max_length = 20)
     def __str__(self):
@@ -139,3 +153,7 @@ class CaseAdmin(admin.ModelAdmin):
 class CaseTypeAdmin(admin.ModelAdmin):
     inlines = [CaseInline]
     exludes = ('caseworktypes')
+    
+
+
+

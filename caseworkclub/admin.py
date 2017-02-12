@@ -8,6 +8,9 @@ from .models import CaseAdmin,CaseTypeAdmin
 
 from .models import PersonAdmin,WorkplaceAdmin
 
+from .models import Task
+
+admin.site.register(Task)
 
 admin.site.register(Member)
 admin.site.register(Caseworker)

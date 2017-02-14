@@ -10,8 +10,14 @@ Open cases for {{object.name}}
 <ul>
 
     <li> 
-        <a href="{% url 'case' case.id %}">{{case.member.full_name}}</a> {{case.member.membership_number}} (<a href="{% url 'caseworker' case.caseworker.id %}">{{case.caseworker.full_name}}</a>)</li>
-
+        <a href="{% url 'case' case.id %}">{{case.member.full_name}}</a> {{case.member.membership_number}}
+       
+        (<a href="{% url 'caseworker' case.caseworker.id %}">{{case.caseworker.full_name}}</a>)
+        <p>
+        {%for type in case.caseworktypes.all%}       
+        {{type.typename}}<p>
+        {% endfor%}
+    </li>
 
 </ul>
 

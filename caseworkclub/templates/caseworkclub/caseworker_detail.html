@@ -1,9 +1,13 @@
+{% extends 'caseworkclub/base.html' %}
+
+{% block main %}
+
 Open cases for {{ object.full_name }}, {{ object.association }} association:
 
 <ul>
 {% for case in object.open_cases%}
-<li> <a href="/caseworkclub/{{case.id}}">{{case}}</a> </li>
+<li> <a href="{%url 'case' case.id%}">{{case}}</a> </li>
 {% endfor %}
 </ul>
 
-
+{% endblock %}

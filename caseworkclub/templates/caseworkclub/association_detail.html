@@ -10,7 +10,7 @@ Open cases for {{object.name}}
 <ul>
 
     <li> 
-        <a href="/case/{{case.id}}">{{case.member.full_name}}</a> {{case.member.membership_number}} (<a href="/caseworker/{{case.caseworker.id}}">{{case.caseworker.full_name}}</a>)</li>
+        <a href="{% url 'case' case.id %}">{{case.member.full_name}}</a> {{case.member.membership_number}} (<a href="{% url 'caseworker' case.caseworker.id %}">{{case.caseworker.full_name}}</a>)</li>
 
 
 </ul>

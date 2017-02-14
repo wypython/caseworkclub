@@ -3,7 +3,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from django.views import generic
 from .forms import CaseNoteForm
-
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 import caseworkclub.models as models
 
 
@@ -16,10 +17,14 @@ class NoteCreate(generic.edit.CreateView):
 
 #    def form_valid(self,form):
  #       form.instance.id = self.request.id
-
+@method_decorator(login_required,name='dispatch')
 class CaseView(generic.DetailView):
     model = models.Case
-
+    def get_context_data(self, **kwargs):
+        context = super(CaseView, self).get_context_data(**kwargs)  
+        context['username'] =  self.request.user.username
+        print(self.request.user.username)
+        return(context)
 class MemberView(generic.DetailView):
     model = models.Member
 

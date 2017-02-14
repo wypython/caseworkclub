@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from caseworkclub.validators import membership_number_regex
+from django.contrib.auth.decorators import login_required
 
 
 

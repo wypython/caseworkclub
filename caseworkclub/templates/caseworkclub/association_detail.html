@@ -1,0 +1,20 @@
+
+{% extends 'caseworkclub/base.html' %}
+
+
+{% block main %}
+
+Open cases for {{object.name}}
+{% for case in object.open_cases %}
+
+<ul>
+
+    <li> 
+        <a href="/case/{{case.id}}">{{case.member.full_name}}</a> {{case.member.membership_number}} (<a href="/caseworker/{{case.caseworker.id}}">{{case.caseworker.full_name}}</a>)</li>
+
+
+</ul>
+
+{% endfor %}
+
+{% endblock %}

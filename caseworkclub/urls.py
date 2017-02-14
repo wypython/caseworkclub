@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'caseworker/(?P<pk>\d+)',views.CaseworkerView.as_view(),name='caseworker'),
     url(r'^newcasenote$',views.new_case_note,name='new_case_note'),
     url(r'^create$',views.NoteCreate.as_view(),name='create'),
-]
+    url(r'^association/(?P<pk>\w*)$',views.AssociationView.as_view(),name='association')
+    ]
+

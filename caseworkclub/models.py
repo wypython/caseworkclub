@@ -88,7 +88,10 @@ class Case(models.Model):
 class Association(models.Model):
     def __str__(self):
         return(self.name)
-    name = models.CharField(max_length = 20)
+    name = models.CharField(max_length = 20,primary_key=True)
+    
+    def open_cases(self):
+        return(Case.objects.filter(closed=None,association=self))
 
 class Employer(models.Model):
     name = models.CharField(max_length = 20)

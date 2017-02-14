@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url,include
 from caseworkclub.validators import membership_number_regex
 from django.contrib.auth.decorators import login_required
 
@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'caseworker/(?P<pk>\d+)',views.CaseworkerView.as_view(),name='caseworker'),
     url(r'^newcasenote$',views.new_case_note,name='new_case_note'),
     url(r'^create$',views.NoteCreate.as_view(),name='create'),
-    url(r'^(?i)association/(?P<pk>\w*)$',views.AssociationView.as_view(),name='association')
+    url(r'^(?i)association/(?P<pk>\w*)$',views.AssociationView.as_view(),name='association'),
+    url(r'^',include('django.contrib.auth.urls')),
     ]
 

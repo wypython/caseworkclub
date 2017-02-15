@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib import admin
+from django.contrib.auth.models import AbstractUser
 import caseworkclub.validators
 
 from django.urls import reverse
@@ -160,3 +161,6 @@ class CaseTypeAdmin(admin.ModelAdmin):
 
 
 
+
+class User(AbstractUser):
+    association = models.ForeignKey('Association',null=True)

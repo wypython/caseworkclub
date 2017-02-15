@@ -9,6 +9,7 @@ from .models import CaseAdmin,CaseTypeAdmin
 from .models import PersonAdmin,WorkplaceAdmin
 
 from .models import Task
+from .models import User
 
 admin.site.register(Task)
 
@@ -27,3 +28,5 @@ admin.site.register(CaseNote)
 admin.site.register(Case,CaseTypeAdmin)
 admin.site.register(NoteType)
 admin.site.register(CaseworkType,CaseTypeAdmin)
+
+admin.site.register(User)

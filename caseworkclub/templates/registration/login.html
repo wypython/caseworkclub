@@ -1,1 +1,9 @@
-Hi There!
+{% extends 'caseworkclub/base.html' %}
+
+{%block main %}
+<form action="" method="post"> {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>
+
+{% endblock %}

@@ -46,6 +46,7 @@ class CaseworkerView(generic.DetailView):
 class AssociationView(generic.DetailView):
     model = models.Association
 
+
 def new_case_note(request):
     if request.method == "POST":
         form = CaseNoteForm(request.POST)

@@ -11,6 +11,16 @@ from .models import PersonAdmin,WorkplaceAdmin
 from .models import Task
 from .models import User
 
+from django.contrib.auth.admin import UserAdmin
+
+class MyUserAdmin(UserAdmin):
+    model = User
+
+    fieldsets = UserAdmin.fieldsets + ((None,{'fields':('association',)}),)
+
+admin.site.register(User,MyUserAdmin)
+
+
 admin.site.register(Task)
 
 admin.site.register(Member)
@@ -29,4 +39,4 @@ admin.site.register(Case,CaseTypeAdmin)
 admin.site.register(NoteType)
 admin.site.register(CaseworkType,CaseTypeAdmin)
 
-admin.site.register(User)
+#admin.site.register(User)

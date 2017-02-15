@@ -13,20 +13,20 @@
         
         <ul class = "nav navbar-nav">
             <li> <a href = "#"> My Cases </a></li>
-        <li> 
         
         {% if user.is_authenticated %}
+        <li> 
             <a href = "{% url 'logout' %}">Log out {{user.get_full_name}}</a>
-
-        {% else %}
-            <a href = "{% url 'login' %}">Log In</a>
-
-        {% endif %}
         </li>
         <li>
-        {{user.association}}
+            <a href="{% url 'association' user.association%}">{{user.association}}</a>
         </li>
-
+        {% else %}
+        <li>
+            <a href = "{% url 'login' %}">Log In</a>
+        </li>
+        {% endif %}
+        </li>
 
         </ul>
     </div>

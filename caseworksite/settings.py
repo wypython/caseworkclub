@@ -31,13 +31,13 @@ ALLOWED_HOSTS = ["0.0.0.0","192.168.1.32","wilsons.lan","wilsonseverywhere.ddns.
 # Application definition
 
 INSTALLED_APPS = [
+    'caseworkclub.apps.CaseworkclubConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'caseworkclub.apps.CaseworkclubConfig',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +104,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/case/1'
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
+LOGOUT_REDIRECT_URL = '/login'
 
 LANGUAGE_CODE = 'en-us'
 

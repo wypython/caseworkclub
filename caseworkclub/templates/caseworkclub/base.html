@@ -4,29 +4,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Menu bar at top (for things that are always the same?) -->
 
-<div class = "container-fluid">
-    <div class = "row">
 
-        <div class = "col-md-1">
-            <img src="{% static 'caseworkclub/NickTorchLogo.jpg' %}">
+<nav class = "navbar navbar-default">
+    <div class = "container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Casework Club</a>
         </div>
+        
+        <ul class = "nav navbar-nav">
+            <li> <a href = "#"> My Cases </a></li>
+        <li> 
+        
+        {% if user.is_authenticated %}
+            <a href = "{% url 'logout' %}">Log out {{user.get_full_name}}</a>
+
+        {% else %}
+            <a href = "{% url 'login' %}">Log In</a>
+
+        {% endif %}
+            
+        
+        
+        </li>
 
 
-        <div class = "col-md-11">
 
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary">My Cases</button>
-                <button type="button" class="btn btn-primary">{{user.get_full_name}}</button>
-                <button type="button" class="btn btn-primary">Log Out</button>
-                <a href="{% url 'logout' %}" class = "btn btn-default" role="button">Log Out</a>
-            </div>
-        </div>
-
-
-
-
-
+        </ul>
     </div>
+
+    <!--    <img src="{% static 'caseworkclub/NickTorchLogo.jpg' %}" -->
+</nav>
+
+<div class = "container-fluid">
     <div class = "row">
         <div class = "col-md-1">
             This <p> will <p> be <p> the <p> side <p> menu.

@@ -48,9 +48,6 @@ class JobType(models.Model):
 class Caseworker(Person):
     association = models.ForeignKey('Association')
 
-    def __str__(self):
-        return(self.full_name())
-
     def open_cases(self):
         return(Case.objects.filter(closed=None,caseworker=self))
 

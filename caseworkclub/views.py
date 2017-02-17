@@ -11,6 +11,7 @@ import caseworkclub.models as models
 def index(request):
     return HttpResponse("Sup, this is the caseworkclub index")
 
+@method_decorator(login_required,name='dispatch')
 class NoteCreate(generic.edit.CreateView):
     model = models.CaseNote
     fields = ['case','text','contact','notetype','timestamp']
@@ -25,6 +26,9 @@ class CaseView(generic.DetailView):
         context['username'] =  self.request.user.username
         print(self.request.user.username)
         return(context)
+
+
+@method_decorator(login_required,name='dispatch')
 class MemberView(generic.DetailView):
     model = models.Member
 
@@ -40,13 +44,16 @@ class MemberView(generic.DetailView):
 
     #return HttpResponse(template.render(context,request))
 
+@method_decorator(login_required,name='dispatch')
 class CaseworkerView(generic.DetailView):
     model = models.Caseworker
 
+@method_decorator(login_required,name='dispatch')
 class AssociationView(generic.DetailView):
     model = models.Association
 
 
+@login_required
 def new_case_note(request):
     if request.method == "POST":
         form = CaseNoteForm(request.POST)

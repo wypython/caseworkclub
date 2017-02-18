@@ -45,14 +45,6 @@ class JobType(models.Model):
     def __str__(self):
         return(self.typename)
 
-class Caseworker(Person):
-    association = models.ForeignKey('Association')
-
-    def open_cases(self):
-        return(Case.objects.filter(closed=None,caseworker=self))
-
-
-
 class Member(Person):
 
     membership_number = models.CharField(max_length=6,primary_key=True,validators=[caseworkclub.validators.membership_number_validator])
@@ -77,7 +69,7 @@ class Case(models.Model):
     opened = models.DateField()
     closed = models.DateField(blank=True,null=True)
     workplace = models.ForeignKey('Workplace',on_delete=models.CASCADE)
-    caseworker = models.ForeignKey('Caseworker')
+    user = models.ForeignKey('User')
     association = models.ForeignKey('Association')
 
     def notes(self):

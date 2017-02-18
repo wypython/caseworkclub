@@ -45,8 +45,9 @@ class MemberView(generic.DetailView):
     #return HttpResponse(template.render(context,request))
 
 @method_decorator(login_required,name='dispatch')
-class CaseworkerView(generic.DetailView):
-    model = models.Caseworker
+class UserCasesView(generic.DetailView):
+    model = models.User
+    template_name = 'templates/caseworker_detail.html'
 
 @method_decorator(login_required,name='dispatch')
 class AssociationView(generic.DetailView):

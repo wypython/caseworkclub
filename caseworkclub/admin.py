@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Member, Caseworker, Person
+from .models import Member, Person
 
 from .models import Workplace, Employer, Job, JobType, Association
 from .models import Case,CaseworkType,CaseNote,NoteType
@@ -24,7 +24,6 @@ admin.site.register(User,MyUserAdmin)
 admin.site.register(Task)
 
 admin.site.register(Member)
-admin.site.register(Caseworker)
 admin.site.register(Person,PersonAdmin)
 admin.site.register(Association)
 

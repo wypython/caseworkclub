@@ -80,6 +80,9 @@ class Association(models.Model):
     def open_cases(self):
         return(Case.objects.filter(closed=None,association=self))
 
+    def caseworkers(self):
+        return(User.objects.filter(association=self))
+
 class Employer(models.Model):
     name = models.CharField(max_length = 20)
     facility_time = models.BooleanField("Pays into facility time pot")

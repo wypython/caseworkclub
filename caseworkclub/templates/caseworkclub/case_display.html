@@ -1,5 +1,5 @@
-
 Open cases for {{object.name}}
+
 {% for case in object.open_cases %}
 
 <ul>
@@ -7,11 +7,12 @@ Open cases for {{object.name}}
     <li> 
         <a href="{% url 'case' case.id %}">{{case.member.full_name}}</a> {{case.member.membership_number}}
        
-        (<a href="{% url 'caseworker' case.caseworker.id %}">{{case.caseworker.full_name}}</a>)
+        (<a href="{% url 'cases' case.caseworker.username %}">{{case.caseworker.full_name}}</a>)
         <p>
         {%for type in case.caseworktypes.all%}       
-        {{type.typename}}<p>
+        {{type.typename}}<br>
         {% endfor%}
     </li>
 
 </ul>
+{% endfor %}

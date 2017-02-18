@@ -3,24 +3,13 @@
 
 
 {% block main %}
-
-Open cases for {{object.name}}
-{% for case in object.open_cases %}
-
-<ul>
-
-    <li> 
-        <a href="{% url 'case' case.id %}">{{case.member.full_name}}</a> {{case.member.membership_number}}
-       
-        (<a href="{% url 'caseworker' case.caseworker.username %}">{{case.caseworker.full_name}}</a>)
-        <p>
-        {%for type in case.caseworktypes.all%}       
-        {{type.typename}}<p>
-        {% endfor%}
-    </li>
-
-</ul>
-
+Caseworkers for {{object.name}}:
+{% for caseworker in object.caseworkers %}
+<br>
+<a href = {% url 'cases' caseworker.username %}>{{caseworker.full_name}}</a>
 {% endfor %}
+<p>
+{% include 'caseworkclub/case_display.html' with object=object %}
+
 
 {% endblock %}

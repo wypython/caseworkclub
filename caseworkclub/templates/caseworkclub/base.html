@@ -8,13 +8,13 @@
 <nav class = "navbar navbar-default">
     <div class = "container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Casework Club</a>
+            <a class="navbar-left" href="#"> <img alt = "Casework Club" src="{% static 'caseworkclub/NickTorchLogo.jpg' %}"class="img-responsive"></a>
         </div>
         
         <ul class = "nav navbar-nav">
-            <li> <a href = "#"> My Cases </a></li>
         
         {% if user.is_authenticated %}
+            <li> <a href = "{% url 'cases' user.username %}">My Cases</a></li>
         <li> 
             <a href = "{% url 'logout' %}">Log out {{user.get_full_name}}</a>
         </li>
@@ -31,7 +31,6 @@
         </ul>
     </div>
 
-    <!--    <img src="{% static 'caseworkclub/NickTorchLogo.jpg' %}" -->
 </nav>
 
 <div class = "container-fluid">

@@ -8,7 +8,9 @@ Caseworkers for {{object.name}}:
 <br>
 <a href = {% url 'cases' caseworker.username %}>{{caseworker.full_name}}</a>
 {% endfor %}
+
 <p>
+
 {% include 'caseworkclub/case_display.html' with object=object %}
 
 

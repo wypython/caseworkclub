@@ -18,8 +18,6 @@ class Workplace(models.Model):
 
 class Person(models.Model): #Base for all the people classes
 
-
-
     surname = models.CharField(max_length=20)
     first_names = models.CharField(max_length=20)
 
@@ -69,9 +67,8 @@ class Case(models.Model):
     opened = models.DateField()
     closed = models.DateField(blank=True,null=True)
     workplace = models.ForeignKey('Workplace',on_delete=models.CASCADE)
-    user = models.ForeignKey('User')
+    caseworker = models.ForeignKey('User')
     association = models.ForeignKey('Association')
-
     def notes(self):
         return(CaseNote.objects.filter(case=self))
 
@@ -153,3 +150,9 @@ class CaseTypeAdmin(admin.ModelAdmin):
 
 class User(AbstractUser):
     association = models.ForeignKey('Association',null=True)
+    def full_name(self):
+
+        return("{} {}".format(self.first_name,self.last_name))
+
+    def open_cases(self):
+        return(Case.objects.filter(closed__isnull=True,caseworker=self))

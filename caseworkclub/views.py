@@ -47,7 +47,8 @@ class MemberView(generic.DetailView):
 @method_decorator(login_required,name='dispatch')
 class UserCasesView(generic.DetailView):
     model = models.User
-    template_name = 'templates/caseworker_detail.html'
+    template_name = 'caseworkclub/caseworker_detail.html'
+    slug_field = 'username'
 
 @method_decorator(login_required,name='dispatch')
 class AssociationView(generic.DetailView):

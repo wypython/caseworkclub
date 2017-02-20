@@ -14,19 +14,22 @@
         <ul class = "nav navbar-nav">
         
         {% if user.is_authenticated %}
-            <li> <a href = "{% url 'cases' user.username %}">My Cases</a></li>
-        <li> 
-            <a href = "{% url 'logout' %}">Log out {{user.get_full_name}}</a>
-        </li>
-        <li>
-            <a href="{% url 'association' user.association%}">{{user.association}}</a>
-        </li>
+            <li> 
+                <a href = "{% url 'cases' user.username %}">My Cases</a>
+            </li>
+
+            <li> 
+                <a href = "{% url 'logout' %}">Log out {{user.get_full_name}}</a>
+            </li>
+
+            <li>
+                <a href="{% url 'association' user.association%}">{{user.association}}</a>
+            </li>
         {% else %}
-        <li>
-            <a href = "{% url 'login' %}">Log In</a>
-        </li>
+            <li>
+                <a href = "{% url 'login' %}">Log In</a>
+            </li>
         {% endif %}
-        </li>
 
         </ul>
     </div>

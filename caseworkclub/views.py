@@ -49,7 +49,7 @@ class UserCasesView(generic.DetailView):
     model = models.User
     template_name = 'caseworkclub/caseworker_detail.html'
     slug_field = 'username'
-
+    context_object_name = 'user_to_view'
 @method_decorator(login_required,name='dispatch')
 class AssociationView(generic.DetailView):
     model = models.Association

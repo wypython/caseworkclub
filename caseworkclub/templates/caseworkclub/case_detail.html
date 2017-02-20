@@ -4,13 +4,13 @@
 {% block main %}
 
 
-Case ID: {{object.id}}<br>
-Member: {{object.member}}<br>
-Workplace: {{object.workplace}}<br>
-Employer: {{object.workplace}}<br>
-Caseworker: {{object.caseworker}}<br>
-Association: {{object.caseworker.association}}<br>
-
+Case: {{object.id}} <a href="">{{object.caseworker.full_name}}</a> - <a href="">{{object.caseworker.association}}</a><br>
+<a href="">{{object.member.full_name}}</a>()<br>
+<a href="">{{object.workplace}}</a>(<a href="">{{object.workplace}}</a>)<br>
+Types: <br>
+{% for type in object.caseworktypes.all %}
+{{type.typename}}<br>
+{% endfor %}
 
 {% for note in object.notes %}
 

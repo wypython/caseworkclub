@@ -16,6 +16,19 @@ class NoteCreate(generic.edit.CreateView):
     model = models.CaseNote
     fields = ['case','text','contact','notetype','timestamp']
 
+
+@method_decorator(login_required,name='dispatch')
+class NewCase(generic.edit.CreateView):
+    model = models.Case
+    fields = ['member','workplace','caseworktypes','opened','caseworker']
+
+    def form_valid(self,form):#Don't knwo what this does, really - got it from Stack Overflow
+        obj = form.save(commit=False)
+        obj.user = request.user
+        obj.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
 #    def form_valid(self,form):
  #       form.instance.id = self.request.id
 @method_decorator(login_required,name='dispatch')

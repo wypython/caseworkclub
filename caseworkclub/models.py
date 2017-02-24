@@ -64,7 +64,7 @@ class Case(models.Model):
         return("ID={}: {} {}, {}".format(self.id,self.member.first_names,self.member.surname,self.workplace))
     member = models.ForeignKey(Member,on_delete=models.CASCADE)
     caseworktypes = models.ManyToManyField(CaseworkType)
-    opened = models.DateField()
+    opened = models.DateField(auto_now_add=True)
     closed = models.DateField(blank=True,null=True)
     workplace = models.ForeignKey('Workplace',on_delete=models.CASCADE)
     caseworker = models.ForeignKey('User')

@@ -11,4 +11,4 @@ class CaseNoteForm(ModelForm):
 class NewCaseForm(ModelForm):
     class Meta:
         model = Case
-        fields = ['member','workplace','caseworktypes','opened','caseworker']
+        fields = ['member','workplace','caseworktypes','caseworker']

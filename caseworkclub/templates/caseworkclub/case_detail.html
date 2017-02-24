@@ -1,16 +1,34 @@
 {% extends 'caseworkclub/base.html' %}
 
+{% load humanize %}
 
 {% block main %}
 
 
-Case: {{object.id}} <a href="">{{object.caseworker.full_name}}</a> - <a href="">{{object.caseworker.association}}</a><br>
-<a href="">{{object.member.full_name}}</a>()<br>
-<a href="">{{object.workplace}}</a>(<a href="">{{object.workplace}}</a>)<br>
-Types: <br>
+Case ID:
+{{object.id|stringformat:"05d"}} <br>
+<a href="{% url 'member' object.member.membership_number %}">{{object.member.membership_number}} {{object.member.full_name}}</a>
+
+<br>
+
+
+<a href="">{{object.workplace}}</a> - <a href="">{{object.workplace.employer}}</a>
+
+<br>
+Opened: {{object.opened}} 
+
+<p>
+
+
+
+Types:
+
 {% for type in object.caseworktypes.all %}
-{{type.typename}}<br>
+{{type.typename}}
 {% endfor %}
+<br>
+Caseworker: <a href="{% url 'cases' object.caseworker.username%}">{{object.caseworker.full_name}}</a><br>
+<p>
 
 {% for note in object.notes %}
 

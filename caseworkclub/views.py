@@ -96,4 +96,6 @@ def createNewCase(request):
 
     else:
         form = NewCaseForm()
+        form.fields["caseworker"].queryset=models.User.objects.filter(association=request.user.association)
+
     return render(request,'caseworkclub/newcaseform.html',{'form':form})

@@ -153,6 +153,9 @@ class CaseTypeAdmin(admin.ModelAdmin):
 
 class User(AbstractUser):
     association = models.ForeignKey('Association',null=True)
+    def __str__(self):
+        return(self.full_name())
+
     def full_name(self):
 
         return("{} {}".format(self.first_name,self.last_name))

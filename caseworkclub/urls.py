@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'cases/(?P<slug>\w+)',views.UserCasesView.as_view(),name='cases'),
     url(r'^newcasenote$',views.new_case_note,name='new_case_note'),
     url(r'^newcase$',views.NewCase.as_view(),name='newcase'),
+    url(r'^createnewcase',views.createNewCase,name='createnewcase'),
     url(r'^create$',views.NoteCreate.as_view(),name='create'),
     url(r'^(?i)association/(?P<pk>\w*)',views.AssociationView.as_view(),name='association'),
     url(r'^login/$',login,name='login'),

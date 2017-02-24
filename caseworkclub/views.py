@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from django.views import generic
-from .forms import CaseNoteForm
+from .forms import CaseNoteForm, NewCaseForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import caseworkclub.models as models
@@ -82,3 +82,16 @@ def new_case_note(request):
 
         form = CaseNoteForm()
     return render(request, 'caseworkclub/casenoteform.html',{'form':form})
+
+
+@login_required
+def createNewCase(request):
+    if request.method == "POST":
+        form = NewCaseForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return redirect('cases',slug=request.user.username)
+
+    else:
+        form = NewCaseForm()
+    return render(request,'caseworkclub/newcaseform.html',{'form':form})

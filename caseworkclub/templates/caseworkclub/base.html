@@ -22,11 +22,6 @@
                 <a href="{% url 'association' user.association%}">{{user.association}}</a>
             </li>
 
-            <li>
-                <a href="{% url 'newcase'%}">New Case</a>
-            </li>
-
-
             <li> 
                 <a href = "{% url 'logout' %}">Log out {{user.get_full_name}}</a>
             </li>
@@ -46,9 +41,14 @@
     <div class = "row">
         <div class = "col-md-2">
             <!-- Side menu (for things that change? some standard, then the django block?) -->
-            <a href="{% url 'newcase' %}" class="btn btn-default">New Case</a>
-            {% block side %}
-            {% endblock %}
+            <div class="btn-group-vertical">
+                <a href="{% url 'newcase' %}" class="btn btn-default">New Case</a>
+                <a href="{% url 'create' %}" class="btn btn-default">New Note</a>
+                
+                <a href="#" class="btn btn-default">New Task</a>
+                {% block side %}
+                {% endblock %}
+            </div>
         </div>
 
         <div class = "col-md-10" style="height:100%; overflow-y: auto;">

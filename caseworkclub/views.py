@@ -89,7 +89,9 @@ def createNewCase(request):
     if request.method == "POST":
         form = NewCaseForm(request.POST)
         if form.is_valid():
-            post = form.save()
+            newcase = form.save(commit=False)
+            newcase.association = request.user.association
+            newcase.save()
             return redirect('cases',slug=request.user.username)
 
     else:

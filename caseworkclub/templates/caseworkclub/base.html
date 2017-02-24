@@ -44,12 +44,14 @@
 
 <div class = "container-fluid">
     <div class = "row">
-        <div class = "col-md-1">
-            This <p> will <p> be <p> the <p> side <p> menu.
+        <div class = "col-md-2">
             <!-- Side menu (for things that change? some standard, then the django block?) -->
+            <a href="{% url 'newcase' %}" class="btn btn-default">New Case</a>
+            {% block side %}
+            {% endblock %}
         </div>
 
-        <div class = "col-md-11" style="height:100%; overflow-y: auto;">
+        <div class = "col-md-10" style="height:100%; overflow-y: auto;">
             {% block main %}
             {% endblock %}
 

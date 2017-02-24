@@ -18,20 +18,6 @@ class NoteCreate(generic.edit.CreateView):
 
 
 @method_decorator(login_required,name='dispatch')
-class NewCase(generic.edit.CreateView):
-    model = models.Case
-    fields = ['member','workplace','caseworktypes','opened','caseworker']
-
-    def form_valid(self,form):#Don't knwo what this does, really - got it from Stack Overflow
-        obj = form.save(commit=False)
-        obj.user = request.user
-        obj.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-
-#    def form_valid(self,form):
- #       form.instance.id = self.request.id
-@method_decorator(login_required,name='dispatch')
 class CaseView(generic.DetailView):
     model = models.Case
     def get_context_data(self, **kwargs):
@@ -45,17 +31,6 @@ class CaseView(generic.DetailView):
 class MemberView(generic.DetailView):
     model = models.Member
 
-##def member(request,membership_number):
-#    member = models.Member.objects.get(membership_number=membership_number)
-##    cases_of_member = models.Case.objects.filter(member=models.Member.objects.get(membership_number=membership_number))
-#    template = loader.get_template('caseworkclub/index.html')
-#    context = {
-#
-#        'cases_of_member' : cases_of_member,
-#        'name' : member,
-#    }
-
-    #return HttpResponse(template.render(context,request))
 
 @method_decorator(login_required,name='dispatch')
 class UserCasesView(generic.DetailView):
@@ -63,6 +38,8 @@ class UserCasesView(generic.DetailView):
     template_name = 'caseworkclub/caseworker_detail.html'
     slug_field = 'username'
     context_object_name = 'user_to_view'
+
+
 @method_decorator(login_required,name='dispatch')
 class AssociationView(generic.DetailView):
     model = models.Association
@@ -85,17 +62,17 @@ def new_case_note(request):
 
 
 @login_required
-def createNewCase(request):
+def NewCase(request):
     if request.method == "POST":
         form = NewCaseForm(request.POST)
         if form.is_valid():
             newcase = form.save(commit=False)
-            newcase.association = request.user.association
+            newcase.association = request.user.association#Use the logged in user's association without asking, don't really want a user to be able to make cases for another association.
             newcase.save()
             return redirect('cases',slug=request.user.username)
 
     else:
-        form = NewCaseForm()
+        form = NewCaseForm()#Only allow caseworkers from the logged in user's association
         form.fields["caseworker"].queryset=models.User.objects.filter(association=request.user.association)
 
     return render(request,'caseworkclub/newcaseform.html',{'form':form})

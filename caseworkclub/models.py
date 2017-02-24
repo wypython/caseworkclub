@@ -39,7 +39,7 @@ class Job(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
 
 class JobType(models.Model):
-    typename = models.CharField(max_length=2)
+    typename = models.CharField(max_length=20)
     def __str__(self):
         return(self.typename)
 

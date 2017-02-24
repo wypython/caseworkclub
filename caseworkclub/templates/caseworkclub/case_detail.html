@@ -30,14 +30,22 @@ Types:
 Caseworker: <a href="{% url 'cases' object.caseworker.username%}">{{object.caseworker.full_name}}</a><br>
 <p>
 
+
+
+
 {% for note in object.notes %}
+    
+    <div class="panel-group">
 
-<div class="well">
-    {{note.timestamp}}<br>
-        {{note.notetype}}: {{note.contact}}<br>
-    {{note.text}}
+        <div class="panel panel-default">
+            <div class="panel-heading">{{note.notetype}}: {{note.contact}}</div>
+            <div class="panel-body">{{note.text}}</div>
+            <div class="panel-footer">{{note.timestamp}}</div>
 
-</div>
+        </div>
+    </div>
+
+
 
 {% endfor %}
 

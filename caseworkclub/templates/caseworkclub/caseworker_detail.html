@@ -2,6 +2,8 @@
 
 {% block main %}
 
+<title>{{user_to_view.full_name}} - Open Cases </title>
+
 {% include 'caseworkclub/case_display.html' with object=object %}
 
 {% endblock %}

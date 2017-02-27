@@ -39,6 +39,13 @@ class UserCasesView(generic.DetailView):
     slug_field = 'username'
     context_object_name = 'user_to_view'
 
+@method_decorator(login_required,name='dispatch')
+class Tasks(generic.DetailView):
+    model = models.User
+    template_name = 'caseworkclub/tasks_detail.html'
+    slug_field = 'username'
+    context_object_name = 'user_to_view'
+
 
 @method_decorator(login_required,name='dispatch')
 class AssociationView(generic.DetailView):
@@ -59,6 +66,7 @@ def new_case_note(request):
 
         form = CaseNoteForm()
     return render(request, 'caseworkclub/casenoteform.html',{'form':form})
+
 
 
 @login_required

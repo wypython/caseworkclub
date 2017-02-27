@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^(?i)association/(?P<pk>\w*)',views.AssociationView.as_view(),name='association'),
     url(r'^login/$',login,name='login'),
     url(r'^logout/$',logout,name='logout'),
+    url(r'tasks/(?P<slug>\w+)',views.Tasks.as_view(),name='tasks'),
     ]
 

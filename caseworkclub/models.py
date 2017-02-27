@@ -114,7 +114,7 @@ class Task(models.Model):
     text = models.TextField()
     contact = models.ForeignKey(Person)
     tasktype = models.ForeignKey('NoteType')
-
+    owner = models.ForeignKey('User',null=True)
     def __str__(self):
         return("{} {}".format(self.tasktype,self.contact))
 

@@ -33,20 +33,20 @@ Caseworker: <a href="{% url 'cases' object.caseworker.username%}">{{object.casew
 
 
 
-{% for note in object.notes %}
     
     <div class="panel-group">
 
+{% for note in object.notes %}
         <div class="panel panel-default">
             <div class="panel-heading">{{note.notetype}}: {{note.contact}}</div>
             <div class="panel-body">{{note.text}}</div>
             <div class="panel-footer">{{note.timestamp}}</div>
 
         </div>
+{% endfor %}
     </div>
 
 
 
-{% endfor %}
 
 {% endblock %}

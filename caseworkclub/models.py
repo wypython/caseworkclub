@@ -162,3 +162,6 @@ class User(AbstractUser):
 
     def open_cases(self):
         return(Case.objects.filter(closed__isnull=True,caseworker=self))
+
+    def open_tasks(self):
+        return(Task.objects.filter(owner=self))

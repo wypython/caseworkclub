@@ -40,7 +40,14 @@ Caseworker: <a href="{% url 'cases' object.caseworker.username%}">{{object.casew
         <div class="panel panel-default">
             <div class="panel-heading">{{note.notetype}}: {{note.contact}}</div>
             <div class="panel-body">{{note.text}}</div>
-            <div class="panel-footer">{{note.timestamp}}</div>
+            <div class="panel-footer">
+                
+                <div class="row">
+                    <div class="col-md-6">{{note.timestamp}}</div>
+                    <div class="col-md-6 text-right"><i>{{note.timestamp|timesince}} ago.</i></div>
+                </div>
+                
+            </div>
 
         </div>
 {% endfor %}

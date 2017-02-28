@@ -2,9 +2,10 @@
 {% block main %}
 <title>{{user_to_view.full_name}} - Tasks </title>
 
-{% for task in object.open_tasks %}
 
 <div class="panel-group">
+
+{% for task in object.open_tasks %}
     <div class = "panel panel-default">
         <div class="panel-heading">{{task.tasktype}} {{task.contact}}
             <button type="button" class="btn btn-success" aria-label="Left Align">
@@ -19,9 +20,11 @@
         <div class="panel-body">{{task.text}}</div>
         <div class="panel-footer">{{task.settime}}</div>
     </div>
-</div>
 
 {% endfor %}
+</div>
+
+
 
 {% endblock %}
 

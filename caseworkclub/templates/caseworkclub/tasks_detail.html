@@ -18,7 +18,12 @@
 
 
         <div class="panel-body">{{task.text}}</div>
-        <div class="panel-footer">{{task.settime}}</div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6"> {{task.settime}}</div>
+                <div class="col-sm-6 text-right"><i>{{task.settime|timesince}} ago.</i></div>
+            </div>
+        </div>
     </div>
 
 {% endfor %}

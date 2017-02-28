@@ -26,7 +26,13 @@
             <li>
                 <a href="{% url 'association' user.association%}">{{user.association}}</a>
             </li>
+        {% endif %}
 
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+
+        {% if user.is_authenticated %}
             <li> 
                 <a href = "{% url 'logout' %}">Log out {{user.get_full_name}}</a>
             </li>
@@ -36,7 +42,6 @@
                 <a href = "{% url 'login' %}">Log In</a>
             </li>
         {% endif %}
-
         </ul>
     </div>
 

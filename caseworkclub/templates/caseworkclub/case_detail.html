@@ -22,8 +22,7 @@ Opened: {{object.opened}}
 
 
 Types:
-
-{% for type in object.caseworktypes.all %}
+{%for type in object.caseworktypes.all %}
 {{type.typename}}
 {% endfor %}
 <br>

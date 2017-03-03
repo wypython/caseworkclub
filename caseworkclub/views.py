@@ -7,9 +7,9 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import caseworkclub.models as models
 
-
+@login_required
 def index(request):
-    return HttpResponse("Sup, this is the caseworkclub index")
+    return redirect('cases',slug=request.user.username)
 
 @method_decorator(login_required,name='dispatch')
 class NoteCreate(generic.edit.CreateView):

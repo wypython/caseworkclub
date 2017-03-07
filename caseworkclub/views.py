@@ -77,6 +77,8 @@ def NewCase(request):
             newcase = form.save(commit=False)
             newcase.association = request.user.association#Use the logged in user's association without asking, don't really want a user to be able to make cases for another association.
             newcase.save()
+            
+            form.save_m2m()
             return redirect('cases',slug=request.user.username)
 
     else:
